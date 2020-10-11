@@ -2,7 +2,7 @@ package redislistqueue
 
 import (
 	"github.com/gomodule/redigo/redis"
-	"github.com/herb-go/herb/model/redis/redispool"
+	"github.com/herb-go/datasource/redis/redispool"
 	"github.com/herb-go/messagequeue"
 )
 
