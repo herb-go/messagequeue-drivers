@@ -216,18 +216,10 @@ func (q *Queue) Close() error {
 	return nil
 }
 
-// ProduceMessages produce messages to broke
-//Return sent result and any error if raised
-func (q *Queue) ProduceMessages(messages ...[]byte) (sent []bool, err error) {
-	sent = make([]bool, len(messages))
-	for k := range messages {
-		err := q.Producer.Publish(q.Topic, messages[k])
-		if err != nil {
-			return sent, err
-		}
-		sent[k] = true
-	}
-	return sent, nil
+// ProduceMessage produce messages to broke
+//Return  any error if raised
+func (q *Queue) ProduceMessage(message []byte) error {
+	return q.Producer.Publish(q.Topic, message)
 }
 
 //SetConsumer set message consumer

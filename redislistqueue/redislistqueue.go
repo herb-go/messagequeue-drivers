@@ -69,18 +69,11 @@ func (q *Queue) Listen() error {
 func (q *Queue) Close() error {
 	return q.pool.Close()
 }
-func (q *Queue) ProduceMessages(messages ...[]byte) (sent []bool, err error) {
-	sent = make([]bool, len(messages))
+func (q *Queue) ProduceMessage(message []byte) error {
 	conn := q.producerpool.Get()
 	defer conn.Close()
-	for k := range messages {
-		_, err := conn.Do("LPUSH", q.Topic, messages[k])
-		if err != nil {
-			return sent, err
-		}
-		sent[k] = true
-	}
-	return sent, nil
+	_, err := conn.Do("LPUSH", q.Topic, message)
+	return err
 }
 func (q *Queue) SetConsumer(c func(*messagequeue.Message) messagequeue.ConsumerStatus) {
 	q.consumer = c
