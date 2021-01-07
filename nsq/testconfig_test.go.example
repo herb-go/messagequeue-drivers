@@ -1,11 +1,10 @@
 //please rename this file to testconfig_test.go
-package nsq
+package nsq_test
 
 var testConfig = `{
 			"Driver":"nsq",
 			"Config":{
 				"Addr":"1.1.1.1:4150",
-				"Topic":"test",
 				"Chanel":"ch"
 			}
         }`
@@ -15,7 +14,6 @@ var testLookupConfig = `{
 			"Config":{
 				"Addr":"1.1.1.1:4150",
 				"LookupAddr":"1.1.1.2:4161",
-				"Topic":"test",
 				"Chanel":"ch"
 			}
         }`
